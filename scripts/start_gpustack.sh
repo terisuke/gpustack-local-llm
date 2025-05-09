@@ -9,8 +9,10 @@ cleanup() {
     echo -e "\nGPUStackを停止します..."
     # 実行中のプロセスを終了
     if [ ! -z "$GPUSTACK_PID" ]; then
-        kill $GPUSTACK_PID 2>/dev/null || true
+        kill -TERM $GPUSTACK_PID 2>/dev/null || true
+        wait $GPUSTACK_PID 2>/dev/null || true
     fi
+    pkill -f "gpustack" || true
     # 仮想環境を無効化
     deactivate 2>/dev/null || true
     echo "GPUStackを停止しました。"
@@ -36,4 +38,4 @@ gpustack start --port 8080 &
 GPUSTACK_PID=$!
 
 # プロセスの終了を待機
-wait $GPUSTACK_PID 
+wait $GPUSTACK_PID  
