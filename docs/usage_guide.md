@@ -74,6 +74,41 @@ UIを使用してモデルの動作をテストできます：
 
 プロジェクトに含まれるStreamlitベースのチャットアプリケーションを実行します：
 
+### 専用スクリプトを使用する方法（推奨）
+
+```bash
+# プロジェクトディレクトリに移動
+cd /Users/yourdirectory/gpustack-local-llm
+
+# Streamlitアプリケーションを起動
+source ./scripts/start_streamlit.sh
+```
+
+このスクリプトは以下の処理を行います：
+- 仮想環境の有効化
+- Streamlitアプリケーションの起動
+- Ctrl+Cでのクリーンな終了処理
+
+### GPUStackとStreamlitを一括で起動する方法
+
+```bash
+# プロジェクトディレクトリに移動
+cd /Users/yourdirectory/gpustack-local-llm
+
+# GPUStackとStreamlitを一括で起動
+source ./scripts/run_all.sh
+```
+
+このスクリプトは以下の処理を行います：
+- 仮想環境の有効化
+- GPUStackサーバーの起動
+- GPUStackの起動完了を待機
+- モデルのデプロイ状態を確認
+- Streamlitアプリケーションの起動
+- Ctrl+Cで両方のサービスをクリーンに終了
+
+### 手動で起動する方法
+
 ```bash
 # プロジェクトディレクトリに移動
 cd /Users/yourdirectory/gpustack-local-llm
