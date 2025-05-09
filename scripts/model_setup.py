@@ -15,7 +15,7 @@ import requests
 from getpass import getpass
 
 # GPUStackのAPIエンドポイント
-API_BASE = "http://localhost:8000/v1"
+API_BASE = "http://localhost:80/v1"
 
 def check_gpustack_running():
     """GPUStackが実行中かどうかを確認する"""
@@ -78,7 +78,7 @@ def list_available_models(api_key):
     headers = {"Authorization": f"Bearer {api_key}"} if api_key else {}
     
     try:
-        response = requests.get(f"{API_BASE}/models/available", headers=headers)
+        response = requests.get(f"{API_BASE}/models/list", headers=headers)
         if response.status_code == 200:
             return response.json()
         else:
@@ -96,7 +96,8 @@ def list_deployed_models(api_key):
     try:
         response = requests.get(f"{API_BASE}/models", headers=headers)
         if response.status_code == 200:
-            return response.json()
+            data = response.json()
+            return {"data": data["items"]} if "items" in data else {"data": []}
         else:
             print(f"デプロイ済みモデルリストの取得に失敗しました: {response.status_code}")
             print(response.text)
@@ -155,25 +156,6 @@ def main():
     # APIキーを取得
     api_key = get_or_create_api_key()
     
-    # デプロイ済みのモデルをリスト表示
-    deployed_models = list_deployed_models(api_key)
-    if deployed_models:
-        print("\n現在デプロイされているモデル:")
-        for model in deployed_models["data"]:
-            print(f" - {model['id']} ({model['status']})")
-    
-    # 既にモデルがデプロイされている場合は処理を終了
-    if deployed_models and len(deployed_models["data"]) > 0:
-        print("\nすでにモデルがデプロイされています。新しいモデルをデプロイする場合は、")
-        print("Playground UI (http://localhost:8000) から行うか、このスクリプトを修正してください。")
-        sys.exit(0)
-    
-    # 利用可能なモデルをリスト表示
-    available_models = list_available_models(api_key)
-    if not available_models:
-        print("利用可能なモデルリストを取得できませんでした。")
-        sys.exit(1)
-    
     # Mac向けの推奨モデルをリスト表示
     mac_models = recommend_models_for_mac()
     
@@ -198,7 +180,7 @@ def main():
     if success:
         print("\nセットアップが完了しました！")
         print("次のステップ:")
-        print("1. Playground UI (http://localhost:8000) でモデルをテスト")
+        print("1. Playground UI (http://localhost:80) でモデルをテスト")
         print("2. チャットボットを起動するには 'cd app && streamlit run app.py' を実行")
     else:
         print("\nセットアップに失敗しました。")

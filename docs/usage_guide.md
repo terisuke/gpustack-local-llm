@@ -49,7 +49,7 @@ GPUStackが起動すると、バックグラウンドでサービスが実行さ
 ## 2. Playground UIの使用
 
 ブラウザでPlayground UIにアクセスします：
-http://localhost:8080
+http://localhost:80
 
 ### モデルのテスト
 
@@ -92,7 +92,7 @@ streamlit run app.py
 
 GPUStackのリソース使用状況を監視できます：
 
-1. Playground UIにアクセス（http://localhost:8080）
+1. Playground UIにアクセス（http://localhost:80）
 2. 「Monitoring」タブを選択
 3. GPUメモリ使用量、CPUメモリ使用量、リクエスト数などのメトリクスを確認
 
@@ -122,7 +122,7 @@ import openai
 
 # APIキーとエンドポイントを設定
 openai.api_key = "YOUR_GPUSTACK_API_KEY"
-openai.api_base = "http://localhost:8080/v1"
+openai.api_base = "http://localhost:80/v1"
 
 # モデルを使用して応答を生成
 response = openai.ChatCompletion.create(
@@ -161,11 +161,11 @@ APIリクエストのパラメータは、Playground UIで調整したものと�
 
 ### ポートが使用中のエラー
 
-ポート8080、10150、10151が使用中の場合は、以下のコマンドでプロセスを確認して終了させることができます：
+ポート80、10150、10151が使用中の場合は、以下のコマンドでプロセスを確認して終了させることができます：
 
 ```bash
 # 使用中のポートを確認
-lsof -i :8080,10150,10151
+lsof -i :80,10150,10151
 
 # プロセスを終了
 kill <PID>

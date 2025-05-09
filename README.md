@@ -17,6 +17,7 @@ gpustack-local-llm/
 ├── README.md           # プロジェクト概要
 ├── app/                # Streamlitアプリケーション
 │   ├── app.py          # メインアプリケーション
+│   ├── GPUStack_API_Example.ipynb # API使用例
 │   └── requirements.txt # アプリケーションの依存関係
 ├── scripts/            # インストールスクリプトとユーティリティ
 │   ├── install.sh      # GPUStack インストールスクリプト
@@ -64,7 +65,7 @@ cd /Users/yourdirectory/gpustack-local-llm
 - 依存関係の更新
 - GPUStackの起動
 
-5. ブラウザで http://localhost:8080 にアクセスしてGPUStackのWebインターフェースを開きます。
+5. ブラウザで http://localhost:80 にアクセスしてGPUStackのWebインターフェースを開きます。
 
 ## 使用方法
 
@@ -87,7 +88,7 @@ cd /Users/yourdirectory/gpustack-local-llm
 ## 注意事項
 
 - GPUStackの起動には`source`コマンドを使用してください（仮想環境の有効化のため）
-- ポート8080、10150、10151が使用可能であることを確認してください
+- ポート80、10150、10151が使用可能であることを確認してください
 - 初回起動時や権限エラーが発生した場合は`fix_permissions.sh`を実行してください
 - 依存関係の更新後はGPUStackの再起動が必要です
 

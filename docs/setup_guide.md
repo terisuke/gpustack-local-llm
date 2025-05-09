@@ -77,13 +77,13 @@ source ./scripts/start_gpustack.sh
 - Ctrl+Cでのクリーンな終了処理
 
 GPUStackのUI（Playground）には、ブラウザから以下のURLでアクセスできます：
-http://localhost:8080
+http://localhost:80
 
 ## 6. APIキーの作成
 
 GPUStack Playground UIにアクセスして、APIキーを作成します：
 
-1. Playground UIにアクセス（http://localhost:8080）
+1. Playground UIにアクセス（http://localhost:80）
 2. 設定アイコンをクリック
 3. 「API Keys」タブを選択
 4. 「Create API Key」ボタンをクリック
@@ -129,11 +129,11 @@ pip install -r requirements.txt
 
 ### ポートが使用中のエラー
 
-ポート8080、10150、10151が使用中の場合は、以下のコマンドでプロセスを確認して終了させることができます：
+ポート80、10150、10151が使用中の場合は、以下のコマンドでプロセスを確認して終了させることができます：
 
 ```bash
 # 使用中のポートを確認
-lsof -i :8080,10150,10151
+lsof -i :80,10150,10151
 
 # プロセスを終了
 kill <PID>
@@ -152,7 +152,7 @@ APIキーが正しく設定されていない場合、以下を確認してく�
 
 - APIキーが環境変数として正しく設定されていること
 - GPUStackサーバーが実行中であること
-- ファイアウォールがポート8080をブロックしていないこと
+- ファイアウォールがポート80をブロックしていないこと
 
 ### メモリ不足のエラー
 

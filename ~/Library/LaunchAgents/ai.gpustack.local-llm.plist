@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>ai.gpustack.local-llm</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/teradakousuke/Developer/gpustack-local-llm/scripts/startup.sh</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/Users/teradakousuke/Library/Logs/gpustack-local-llm.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/teradakousuke/Library/Logs/gpustack-local-llm.error.log</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
+</dict>
+</plist> 
