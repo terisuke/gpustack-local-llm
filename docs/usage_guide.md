@@ -2,7 +2,32 @@
 
 このガイドでは、GPUStackを使用したローカルLLMチャットボットの使用方法について説明します。
 
-## 1. GPUStackの起動
+## 1. セッションの開始
+
+プロジェクトのセッションを開始するには、以下のコマンドを実行します：
+
+```bash
+# プロジェクトディレクトリに移動
+cd /Users/yourdirectory/gpustack-local-llm
+
+# セッションを開始
+./scripts/session_start.sh
+```
+
+このスクリプトは以下の処理を行います：
+- Gitリポジトリの更新確認
+- 依存関係の更新
+- GPUStackの起動
+
+### 手動での依存関係更新
+
+依存関係のみを更新したい場合は、以下のコマンドを実行します：
+
+```bash
+./scripts/update_dependencies.sh
+```
+
+## 2. GPUStackの起動
 
 既にセットアップが完了している場合は、以下のコマンドでGPUStackを起動します：
 

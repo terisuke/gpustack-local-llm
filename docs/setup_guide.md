@@ -24,7 +24,33 @@ cd /Users/yourdirectory/gpustack-local-llm
 - 仮想環境の作成
 - 必要なパッケージのインストール
 
-## 3. 権限の設定
+## 3. 依存関係の管理
+
+プロジェクトの依存関係は以下の方法で管理できます：
+
+### 手動での更新
+```bash
+# 依存関係を更新
+./scripts/update_dependencies.sh
+```
+
+このスクリプトは以下の処理を行います：
+- pipのアップグレード
+- GPUStackの更新
+- アプリケーションの依存関係の更新
+
+### セッション起動時の自動更新
+```bash
+# セッションを開始（Gitの更新確認と依存関係の更新を含む）
+./scripts/session_start.sh
+```
+
+このスクリプトは以下の処理を行います：
+- Gitリポジトリの更新確認
+- 依存関係の更新
+- GPUStackの起動
+
+## 4. 権限の設定
 
 GPUStackの実行に必要な権限を設定します：
 
@@ -38,7 +64,7 @@ GPUStackの実行に必要な権限を設定します：
 - サードパーティバイナリの実行権限設定
 - Fastfetchとllama-box-rpc-serverの権限設定
 
-## 4. GPUStackの起動
+## 5. GPUStackの起動
 
 ```bash
 # GPUStackを起動
@@ -53,7 +79,7 @@ source ./scripts/start_gpustack.sh
 GPUStackのUI（Playground）には、ブラウザから以下のURLでアクセスできます：
 http://localhost:8080
 
-## 5. APIキーの作成
+## 6. APIキーの作成
 
 GPUStack Playground UIにアクセスして、APIキーを作成します：
 
@@ -63,7 +89,7 @@ GPUStack Playground UIにアクセスして、APIキーを作成します：
 4. 「Create API Key」ボタンをクリック
 5. 生成されたAPIキーをコピーして安全な場所に保存（これは一度しか表示されないので注意）
 
-## 6. モデルのダウンロードとデプロイ
+## 7. モデルのダウンロードとデプロイ
 
 GPUStackでLLMモデルをダウンロードしてデプロイします。以下の例では、軽量なLlamaモデルをダウンロードします：
 
@@ -81,7 +107,7 @@ python scripts/model_setup.py
 5. モデルリストから目的のモデルを選択（例：Qwen2.5-0.5B-GGUF）
 6. 「Deploy」ボタンをクリック
 
-## 7. アプリケーションの依存関係のインストール
+## 8. アプリケーションの依存関係のインストール
 
 ```bash
 # アプリケーションディレクトリに移動
