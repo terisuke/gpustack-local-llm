@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  gpustack:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"      # GPUStack Playground UI
+      - "8501:8501"  # Streamlit app
+    volumes:
+      - gpustack_data:/var/lib/gpustack
+    environment:
+      - DEPLOY_MODEL=true
+      # Specify which model to deploy (defaults to TinyLlama-1.1B if not set)
+      - MODEL_ID=TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF
+    restart: unless-stopped
+
+volumes:
+  gpustack_data:
+    # Persistent volume for model storage
