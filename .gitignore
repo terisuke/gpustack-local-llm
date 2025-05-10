@@ -43,4 +43,7 @@ app/__pycache__/
 docs/_build/
 .coverage
 htmlcov/
-.pytest_cache/ 
+.pytest_cache/
+
+# Client proposal documents
+proposal/
