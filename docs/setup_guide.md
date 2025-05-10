@@ -79,6 +79,36 @@ source ./scripts/start_gpustack.sh
 GPUStackのUI（Playground）には、ブラウザから以下のURLでアクセスできます：
 http://localhost:80
 
+## 6. Streamlitアプリケーションの起動
+
+```bash
+# Streamlitアプリケーションを起動
+source ./scripts/start_streamlit.sh
+```
+
+このスクリプトは以下の処理を行います：
+- 仮想環境の有効化
+- Streamlitアプリケーションの起動
+- Ctrl+Cでのクリーンな終了処理
+
+Streamlitアプリケーションには、ブラウザから以下のURLでアクセスできます：
+http://localhost:8501
+
+## 7. GPUStackとStreamlitの一括起動
+
+```bash
+# GPUStackとStreamlitを一括で起動
+source ./scripts/run_all.sh
+```
+
+このスクリプトは以下の処理を行います：
+- 仮想環境の有効化
+- GPUStackサーバーの起動
+- GPUStackの起動完了を待機
+- モデルのデプロイ状態を確認
+- Streamlitアプリケーションの起動
+- Ctrl+Cで両方のサービスをクリーンに終了
+
 ## 6. APIキーの作成
 
 GPUStack Playground UIにアクセスして、APIキーを作成します：

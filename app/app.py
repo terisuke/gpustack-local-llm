@@ -40,9 +40,14 @@ st.sidebar.markdown("---")
 def check_gpustack_connection():
     """GPUStackとの接続を確認する"""
     try:
-        response = requests.get(f"{GPUSTACK_API_BASE}/models")
+        response = requests.get(f"{GPUSTACK_API_BASE}/models", timeout=5)
         return response.status_code == 200
-    except:
+    except requests.exceptions.ConnectionError:
+        return False
+    except requests.exceptions.Timeout:
+        return False
+    except Exception as e:
+        st.error(f"GPUStackサーバーとの接続中にエラーが発生しました: {str(e)}")
         return False
 
 def get_available_models():
@@ -92,8 +97,15 @@ def chat_with_model(model, messages, max_tokens=500, temperature=0.7, top_p=0.95
             top_p=top_p
         )
         return response.choices[0].message.content
+    except requests.exceptions.ConnectionError:
+        st.error("GPUStackサーバーとの接続が切断されました。サーバーが実行中か確認してください。")
+        return None
     except Exception as e:
-        st.error(f"エラーが発生しました: {str(e)}")
+        error_msg = str(e)
+        if "模倣" in error_msg or "imitating" in error_msg:
+            st.warning("モデルがレスポンスの生成を停止しました。別の質問を試してみてください。")
+        else:
+            st.error(f"エラーが発生しました: {error_msg}")
         return None
 
 def init_session_state():
@@ -160,8 +172,17 @@ def main():
     """メイン関数"""
     init_session_state()
     
-    # GPUStackとの接続を確認
-    if not check_gpustack_connection():
+    # GPUStackとの接続を確認（リトライ機能付き）
+    connected = False
+    for i in range(3):  # 最大3回リトライ
+        if check_gpustack_connection():
+            connected = True
+            break
+        if i < 2:  # 最後のリトライではメッセージを表示しない
+            st.info(f"GPUStackサーバーへの接続を試みています... ({i+1}/3)")
+            time.sleep(2)
+    
+    if not connected:
         st.error("GPUStackサーバーに接続できません。サーバーが実行中であることを確認してください。")
         st.info("以下のコマンドを実行してGPUStackを起動してください:")
         st.code("gpustack start")

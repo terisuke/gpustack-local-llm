@@ -23,6 +23,8 @@ gpustack-local-llm/
 │   ├── install.sh      # GPUStack インストールスクリプト
 │   ├── fix_permissions.sh # 権限修正スクリプト
 │   ├── start_gpustack.sh # GPUStack起動スクリプト
+│   ├── start_streamlit.sh # Streamlit起動スクリプト
+│   ├── run_all.sh      # GPUStackとStreamlitを一括起動するスクリプト
 │   ├── update_dependencies.sh # 依存関係更新スクリプト
 │   ├── session_start.sh # セッション起動スクリプト
 │   └── model_setup.py  # モデルのセットアップスクリプト
