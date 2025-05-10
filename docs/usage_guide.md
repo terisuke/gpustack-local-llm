@@ -4,7 +4,9 @@
 
 ## 1. セッションの開始
 
-プロジェクトのセッションを開始するには、以下のコマンドを実行します：
+プロジェクトのセッションを開始するには、以下の方法があります：
+
+### 通常のインストール方法
 
 ```bash
 # プロジェクトディレクトリに移動
@@ -18,6 +20,23 @@ cd /Users/yourdirectory/gpustack-local-llm
 - Gitリポジトリの更新確認
 - 依存関係の更新
 - GPUStackの起動
+
+### Docker を使用する方法
+
+```bash
+# プロジェクトディレクトリに移動
+cd /Users/yourdirectory/gpustack-local-llm
+
+# Docker Composeを使用してビルドと起動を行う
+docker-compose up -d
+```
+
+このコマンドは以下の処理を行います：
+- Dockerイメージのビルド（初回のみ）
+- コンテナの起動
+- GPUStackサーバーの起動
+- 小さなモデルの自動デプロイ（設定されている場合）
+- Streamlitアプリケーションの起動
 
 ### 手動での依存関係更新
 
