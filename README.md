@@ -1,6 +1,6 @@
 # GPUStack Local LLM Chatbot
 
-このプロジェクトは、GPUStackを使用してローカル環境で動作するLLMチャットボットを構築するものです。GPUStackの基本的な機能であるモデルデプロイ、OpenAI互換APIの利用、Playground UIでのモデル管理を学ぶことができます。
+このプロジェクトは、[GPUStack](https://github.com/gpustack/gpustack)を使用してローカル環境で動作するLLMチャットボットを構築するものです。GPUStackの基本的な機能であるモデルデプロイ、OpenAI互換APIの利用、Playground UIでのモデル管理を学ぶことができます。
 
 ## プロジェクトの概要
 
@@ -127,4 +127,4 @@ docker-compose up -d
 
 ## ライセンス
 
-MIT License
+[MIT License](https://opensource.org/licenses/MIT)
