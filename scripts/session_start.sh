@@ -4,6 +4,18 @@
 
 set -e
 
+# クリーンアップ関数の定義
+cleanup() {
+    echo "クリーンアップを実行しています..."
+    if [ ! -z "$GPUSTACK_PID" ]; then
+        kill $GPUSTACK_PID 2>/dev/null || true
+    fi
+    exit 0
+}
+
+# シグナルハンドラの設定
+trap cleanup SIGINT SIGTERM
+
 echo "GPUStack セッションを開始します..."
 
 # プロジェクトルートディレクトリの確認
@@ -22,7 +34,11 @@ fi
 
 # GPUStackの起動
 echo "GPUStackを起動しています..."
-gpustack start
+gpustack start &
+GPUSTACK_PID=$!
+
+# バックグラウンドプロセスの終了を待機
+wait $GPUSTACK_PID
 
 echo "セッションの準備が完了しました！"
 echo "アプリケーションを起動するには:"
