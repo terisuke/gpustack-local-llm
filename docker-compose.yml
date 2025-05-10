@@ -5,6 +5,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      # For multi-architecture builds with buildx
+      platforms:
+        - linux/amd64
+        - linux/arm64
     ports:
       - "80:80"      # GPUStack Playground UI
       - "8501:8501"  # Streamlit app

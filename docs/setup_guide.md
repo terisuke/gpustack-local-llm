@@ -172,6 +172,17 @@ docker-compose up -d
 - ポートのマッピング（80→80、8501→8501）
 - 永続ボリュームの作成（モデルデータ用）
 
+### マルチアーキテクチャ対応（ARM64/AMD64）
+
+このプロジェクトのDockerfileは、Docker Buildxを使用してARM64（Apple Silicon）とAMD64（x86_64）の両方のアーキテクチャに対応しています。マルチアーキテクチャイメージをビルドするには：
+
+```bash
+# ビルドスクリプトを実行
+./scripts/build_multiarch.sh
+```
+
+詳細については、[マルチアーキテクチャDockerビルドガイド](docker_multiarch.md)を参照してください。
+
 ### Dockerサービスへのアクセス
 
 Dockerコンテナが起動すると、以下のURLでサービスにアクセスできます：
