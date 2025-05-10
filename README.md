@@ -35,11 +35,18 @@ gpustack-local-llm/
 
 ## 前提条件
 
+### 通常のインストール
 - macOS または Linux 環境
 - Python 3.10+ (GPUStackの要件)
 - CUDA対応GPUまたはApple Siliconチップ (M1/M2/M3/M4シリーズ)
 
+### Dockerを使用する場合
+- Docker Desktop がインストールされていること
+- CUDA対応GPUまたはApple Siliconチップ (M1/M2/M3/M4シリーズ)
+
 ## セットアップ手順
+
+### 通常のインストール方法
 
 1. リポジトリのクローン:
 ```bash
@@ -68,6 +75,30 @@ cd /Users/yourdirectory/gpustack-local-llm
 - GPUStackの起動
 
 5. ブラウザで http://localhost:80 にアクセスしてGPUStackのWebインターフェースを開きます。
+
+### Dockerを使用する方法
+
+1. リポジトリのクローン:
+```bash
+git clone https://github.com/terisuke/gpustack-local-llm.git
+cd /Users/yourdirectory/gpustack-local-llm
+```
+
+2. Docker Composeを使用してビルドと起動:
+```bash
+docker-compose up -d
+```
+
+このコマンドは以下の処理を行います：
+- Dockerイメージのビルド（初回のみ）
+- コンテナの起動
+- GPUStackサーバーの起動
+- 小さなモデルの自動デプロイ（設定されている場合）
+- Streamlitアプリケーションの起動
+
+3. ブラウザで以下のURLにアクセス:
+- GPUStack Playground UI: http://localhost:80
+- Streamlitチャットアプリ: http://localhost:8501
 
 ## 使用方法
 

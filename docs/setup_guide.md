@@ -4,9 +4,14 @@
 
 ## 1. 前提条件
 
+### 通常のインストール
 - macOS（M1/M2/M3/M4 チップ搭載Mac）
 - Homebrew がインストールされていること
 - Python 3.10 以上がインストールされていること（GPUStackの要件）
+- 十分なディスク容量（20GB以上推奨）
+
+### Dockerを使用する場合
+- Docker Desktop がインストールされていること
 - 十分なディスク容量（20GB以上推奨）
 
 ## 2. プロジェクトのセットアップ
@@ -145,6 +150,71 @@ cd app
 
 # 依存関係をインストール
 pip install -r requirements.txt
+```
+
+## 9. Dockerを使用したセットアップ
+
+Dockerを使用すると、依存関係のインストールやGPUStackの設定を自動化できます。
+
+### Dockerイメージのビルドと実行
+
+```bash
+# プロジェクトディレクトリに移動
+cd /Users/yourdirectory/gpustack-local-llm
+
+# Docker Composeを使用してビルドと起動を行う
+docker-compose up -d
+```
+
+このコマンドは以下の処理を行います：
+- Dockerイメージのビルド
+- コンテナの起動
+- ポートのマッピング（80→80、8501→8501）
+- 永続ボリュームの作成（モデルデータ用）
+
+### マルチアーキテクチャ対応（ARM64/AMD64）
+
+このプロジェクトのDockerfileは、Docker Buildxを使用してARM64（Apple Silicon）とAMD64（x86_64）の両方のアーキテクチャに対応しています。マルチアーキテクチャイメージをビルドするには：
+
+```bash
+# ビルドスクリプトを実行
+./scripts/build_multiarch.sh
+```
+
+詳細については、[マルチアーキテクチャDockerビルドガイド](docker_multiarch.md)を参照してください。
+
+### Dockerサービスへのアクセス
+
+Dockerコンテナが起動すると、以下のURLでサービスにアクセスできます：
+- GPUStack Playground UI: http://localhost:80
+- Streamlitチャットアプリ: http://localhost:8501
+
+### 環境変数の設定
+
+`docker-compose.yml`ファイルで以下の環境変数を設定できます：
+- `DEPLOY_MODEL`: 起動時に小さなモデルを自動的にデプロイするかどうか（true/false）
+- `MODEL_ID`: デプロイするモデルのID（例：TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF）
+
+```yaml
+environment:
+  - DEPLOY_MODEL=true
+  - MODEL_ID=TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF
+```
+
+### Dockerコンテナの管理
+
+```bash
+# コンテナの状態を確認
+docker ps
+
+# コンテナのログを表示
+docker logs gpustack-local-llm_gpustack_1
+
+# コンテナを停止
+docker-compose down
+
+# コンテナを再起動
+docker-compose restart
 ```
 
 ## トラブルシューティング
